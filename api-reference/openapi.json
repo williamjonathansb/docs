@@ -276,7 +276,27 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Seller"
+                "type": "object",
+                "properties": {
+                  "cid": {
+                    "type": "integer"
+                  },
+                  "company_name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cid",
+                  "company_name",
+                  "address",
+                  "telephone"
+                ]
               }
             }
           }
@@ -403,7 +423,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Seller"
+                "type": "object",
+                "properties": {
+                  "cid": {
+                    "type": "integer"
+                  },
+                  "company_name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
@@ -484,7 +518,31 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Warehouse"
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  },
+                  "warehouse_code": {
+                    "type": "string"
+                  },
+                  "minimum_capacity": {
+                    "type": "integer"
+                  },
+                  "minimum_temperature": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "address",
+                  "telephone",
+                  "warehouse_code",
+                  "minimum_capacity",
+                  "minimum_temperature"
+                ]
               }
             }
           }
@@ -611,7 +669,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Warehouse"
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  },
+                  "warehouse_code": {
+                    "type": "string"
+                  },
+                  "minimum_capacity": {
+                    "type": "integer"
+                  },
+                  "minimum_temperature": {
+                    "type": "integer"
+                  }
+                }
               }
             }
           }
@@ -692,7 +767,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Section"
+                "properties": {
+                  "section_number": {
+                    "type": "integer"
+                  },
+                  "current_temperature": {
+                    "type": "integer"
+                  },
+                  "minimum_temperature": {
+                    "type": "integer"
+                  },
+                  "current_capacity": {
+                    "type": "integer"
+                  },
+                  "minimum_capacity": {
+                    "type": "integer"
+                  },
+                  "maximum_capacity": {
+                    "type": "integer"
+                  },
+                  "warehouse_id": {
+                    "type": "integer"
+                  },
+                  "product_type_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "section_number",
+                  "current_temperature",
+                  "minimum_temperature",
+                  "current_capacity",
+                  "minimum_capacity",
+                  "maximum_capacity",
+                  "warehouse_id",
+                  "product_type_id"
+                ]
               }
             }
           }
@@ -819,7 +929,32 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Section"
+                "properties": {
+                  "section_number": {
+                    "type": "integer"
+                  },
+                  "current_temperature": {
+                    "type": "integer"
+                  },
+                  "minimum_temperature": {
+                    "type": "integer"
+                  },
+                  "current_capacity": {
+                    "type": "integer"
+                  },
+                  "minimum_capacity": {
+                    "type": "integer"
+                  },
+                  "maximum_capacity": {
+                    "type": "integer"
+                  },
+                  "warehouse_id": {
+                    "type": "integer"
+                  },
+                  "product_type_id": {
+                    "type": "integer"
+                  }
+                }
               }
             }
           }
@@ -900,7 +1035,55 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "expiration_rate": {
+                    "type": "integer"
+                  },
+                  "freezing_rate": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "number"
+                  },
+                  "length": {
+                    "type": "number"
+                  },
+                  "netweight": {
+                    "type": "number"
+                  },
+                  "product_code": {
+                    "type": "string"
+                  },
+                  "recommended_freezing_temperature": {
+                    "type": "number"
+                  },
+                  "width": {
+                    "type": "number"
+                  },
+                  "product_type_id": {
+                    "type": "integer"
+                  },
+                  "seller_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "description",
+                  "expiration_rate",
+                  "freezing_rate",
+                  "height",
+                  "length",
+                  "netweight",
+                  "product_code",
+                  "recommended_freezing_temperature",
+                  "width",
+                  "product_type_id",
+                  "seller_id"
+                ]
               }
             }
           }
@@ -1027,7 +1210,45 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "expiration_rate": {
+                    "type": "integer"
+                  },
+                  "freezing_rate": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "number"
+                  },
+                  "length": {
+                    "type": "number"
+                  },
+                  "netweight": {
+                    "type": "number"
+                  },
+                  "product_code": {
+                    "type": "string"
+                  },
+                  "recommended_freezing_temperature": {
+                    "type": "number"
+                  },
+                  "width": {
+                    "type": "number"
+                  },
+                  "product_type_id": {
+                    "type": "integer"
+                  },
+                  "seller_id": {
+                    "type": "integer"
+                  }
+                }
               }
             }
           }
@@ -1108,7 +1329,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "properties": {
+                  "card_number_id": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "warehouse_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "card_number_id",
+                  "first_name",
+                  "last_name",
+                  "warehouse_id"
+                ]
               }
             }
           }
@@ -1235,7 +1475,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "properties": {
+                  "card_number_id": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "warehouse_id": {
+                    "type": "integer"
+                  }
+                }
               }
             }
           }
@@ -1316,7 +1569,22 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Buyer"
+                "properties": {
+                  "card_number_id": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "card_number_id",
+                  "first_name",
+                  "last_name"
+                ]
               }
             }
           }
@@ -1443,7 +1711,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Buyer"
+                "properties": {
+                  "card_number_id": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }

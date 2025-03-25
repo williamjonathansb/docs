@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "MeliFresh",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -20,17 +20,6 @@
               "quickstart",
               "development"
             ]
-          },
-          {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
           }
         ]
       },
@@ -44,59 +33,77 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Seller",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/sellers/create",
+              "api-reference/endpoint/sellers/get",
+              "api-reference/endpoint/sellers/getById",
+              "api-reference/endpoint/sellers/updatePartial",
+              "api-reference/endpoint/sellers/delete"
+            ]
+          },
+          {
+            "group": "Warehouse",
+            "pages": [
+              "api-reference/endpoint/warehouses/create",
+              "api-reference/endpoint/warehouses/get",
+              "api-reference/endpoint/warehouses/getById",
+              "api-reference/endpoint/warehouses/updatePartial",
+              "api-reference/endpoint/warehouses/delete"
+            ]
+          },
+          {
+            "group": "Sections",
+            "pages": [
+              "api-reference/endpoint/sections/create",
+              "api-reference/endpoint/sections/get",
+              "api-reference/endpoint/sections/getById",
+              "api-reference/endpoint/sections/updatePartial",
+              "api-reference/endpoint/sections/delete"
+            ]
+          },
+          {
+            "group": "Products",
+            "pages": [
+              "api-reference/endpoint/products/create",
+              "api-reference/endpoint/products/get",
+              "api-reference/endpoint/products/getById",
+              "api-reference/endpoint/products/updatePartial",
+              "api-reference/endpoint/products/delete"
+            ]
+          },
+          {
+            "group": "Employees",
+            "pages": [
+              "api-reference/endpoint/employees/create",
+              "api-reference/endpoint/employees/get",
+              "api-reference/endpoint/employees/getById",
+              "api-reference/endpoint/employees/updatePartial",
+              "api-reference/endpoint/employees/delete"
+            ]
+          },
+          {
+            "group": "Buyers",
+            "pages": [
+              "api-reference/endpoint/buyers/create",
+              "api-reference/endpoint/buyers/get",
+              "api-reference/endpoint/buyers/getById",
+              "api-reference/endpoint/buyers/updatePartial",
+              "api-reference/endpoint/buyers/delete"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
+  "navbar": {},
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/bootcamp-go-wave-6/bootcamp-go-wave-6-grupo-06"
     }
   }
 }

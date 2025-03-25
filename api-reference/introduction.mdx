@@ -1,21 +1,18 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'Introdução'
+description: 'Entenda conceitos gerais e códigos de resposta da nossa api'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Códigos de resposta
 
-## Welcome
+Melifresh usa códigos HTTP padrão para indicar o sucesso ou falha de suas solicitações.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Em geral, códigos HTTP 2xx correspondem a sucesso, códigos 4xx são para falhas relacionadas ao usuário e códigos 5xx são para problemas de infraestrutura.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+| Status   | Descrição                             |
+| -------- | ------------------------------------- |
+| `200`    | Solicitação bem-sucedida.                     |
+| `422`    | Verifique se os parâmetros estavam corretos.  |
+| `404`    | O recurso não foi encontrado.                 |
+| `409`    | O recurso já existe                           |
+| `5xx`    | Indica um erro com servidores do melifresh.   |

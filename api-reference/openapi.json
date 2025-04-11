@@ -227,16 +227,27 @@
       "Error": {
         "type": "object",
         "properties": {
-          "status": {
-            "type": "string"
-          },
           "message": {
             "type": "string"
           }
         },
         "required": [
-          "status",
           "message"
+        ]
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "validation_errors": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "message",
+          "validation_errors"
         ]
       }
     }
@@ -1001,6 +1012,69 @@
         }
       }
     },
+    "/sections/reportProducts": {
+      "get": {
+        "summary": "Get products report by section",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the section to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products report for the specified section",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "section_id": {
+                      "type": "integer"
+                    },
+                    "section_number": {
+                      "type": "integer"
+                    },
+                    "products_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "section_id",
+                    "section_number",
+                    "products_count"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Section not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/products": {
       "get": {
         "summary": "Get all products",
@@ -1535,6 +1609,74 @@
         }
       }
     },
+    "/employees/reportInboundOrders": {
+      "get": {
+        "summary": "Get inbound orders report by employee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the employee to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inbound orders report for the specified employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "card_number_id": {
+                        "type": "string"
+                      },
+                      "first_name": {
+                        "type": "string"
+                      },
+                      "last_name": {
+                        "type": "string"
+                      },
+                      "warehouse_id": {
+                        "type": "integer"
+                      },
+                      "inbound_orders_count": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "card_number_id",
+                      "first_name",
+                      "last_name",
+                      "warehouse_id",
+                      "inbound_orders_count"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Employee not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/buyers": {
       "get": {
         "summary": "Get all buyers",
@@ -1751,6 +1893,661 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buyers/reportPurchaseOrders": {
+      "get": {
+        "summary": "Get purchase orders report by buyer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the buyer to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase orders report for the specified buyer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "card_number_id": {
+                        "type": "string"
+                      },
+                      "first_name": {
+                        "type": "string"
+                      },
+                      "last_name": {
+                        "type": "string"
+                      },
+                      "purchase_orders_count": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "card_number_id",
+                      "first_name",
+                      "last_name",
+                      "purchase_orders_count"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Buyer not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localities": {
+      "post": {
+        "summary": "Create a new locality",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locality_name": {
+                    "type": "string"
+                  },
+                  "province_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "locality_name",
+                  "province_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Locality created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "locality_name": {
+                          "type": "string"
+                        },
+                        "province_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "locality_name",
+                        "province_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localities/reportSellers": {
+      "get": {
+        "summary": "Get sellers report by locality",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the locality to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sellers report for the specified locality",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "locality_id": {
+                            "type": "integer"
+                          },
+                          "locality_name": {
+                            "type": "string"
+                          },
+                          "sellers_count": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "locality_id",
+                          "locality_name",
+                          "sellers_count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Locality not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localities/reportCarriers": {
+      "get": {
+        "summary": "Get carriers report by locality",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the locality to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Carriers report for the specified locality",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "locality_id": {
+                            "type": "integer"
+                          },
+                          "locality_name": {
+                            "type": "string"
+                          },
+                          "carriers_count": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "locality_id",
+                          "locality_name",
+                          "carriers_count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Locality not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carriers": {
+      "post": {
+        "summary": "Create a new carrier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cid": {
+                    "type": "string"
+                  },
+                  "company_name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  },
+                  "locality_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "cid",
+                  "company_name",
+                  "address",
+                  "telephone",
+                  "locality_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Carrier created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "cid": {
+                          "type": "string"
+                        },
+                        "company_name": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "locality_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "cid",
+                        "company_name",
+                        "address",
+                        "telephone",
+                        "locality_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productBatches": {
+      "post": {
+        "summary": "Create a new product batch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "batch_number": {
+                    "type": "integer"
+                  },
+                  "current_quantity": {
+                    "type": "integer"
+                  },
+                  "current_temperature": {
+                    "type": "integer"
+                  },
+                  "due_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "initial_quantity": {
+                    "type": "integer"
+                  },
+                  "manufacturing_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "manufacturing_hour": {
+                    "type": "integer"
+                  },
+                  "minumum_temperature": {
+                    "type": "integer"
+                  },
+                  "product_id": {
+                    "type": "integer"
+                  },
+                  "section_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "batch_number",
+                  "current_quantity",
+                  "current_temperature",
+                  "due_date",
+                  "initial_quantity",
+                  "manufacturing_date",
+                  "manufacturing_hour",
+                  "minumum_temperature",
+                  "product_id",
+                  "section_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product batch created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "batch_number": {
+                          "type": "integer"
+                        },
+                        "current_quantity": {
+                          "type": "integer"
+                        },
+                        "current_temperature": {
+                          "type": "integer"
+                        },
+                        "due_date": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "initial_quantity": {
+                          "type": "integer"
+                        },
+                        "manufacturing_date": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "manufacturing_hour": {
+                          "type": "integer"
+                        },
+                        "minumum_temperature": {
+                          "type": "integer"
+                        },
+                        "product_id": {
+                          "type": "integer"
+                        },
+                        "section_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "batch_number",
+                        "current_quantity",
+                        "current_temperature",
+                        "due_date",
+                        "initial_quantity",
+                        "manufacturing_date",
+                        "manufacturing_hour",
+                        "minumum_temperature",
+                        "product_id",
+                        "section_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboundOrders": {
+      "post": {
+        "summary": "Create a new inbound order",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "order_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "order_number": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "integer"
+                  },
+                  "product_batch_id": {
+                    "type": "integer"
+                  },
+                  "warehouse_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "order_date",
+                  "order_number",
+                  "employee_id",
+                  "product_batch_id",
+                  "warehouse_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Inbound order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/purchaseOrders": {
+      "post": {
+        "summary": "Create a new purchase order",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "order_number": {
+                    "type": "string"
+                  },
+                  "order_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "tracking_code": {
+                    "type": "string"
+                  },
+                  "buyer_id": {
+                    "type": "integer"
+                  },
+                  "product_record_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "order_number",
+                  "order_date",
+                  "tracking_code",
+                  "buyer_id",
+                  "product_record_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Purchase order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
                 }
               }
             }

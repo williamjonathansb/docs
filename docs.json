@@ -46,7 +46,8 @@
               "api-reference/endpoint/sections/get",
               "api-reference/endpoint/sections/getById",
               "api-reference/endpoint/sections/updatePartial",
-              "api-reference/endpoint/sections/delete"
+              "api-reference/endpoint/sections/delete",
+              "api-reference/endpoint/sections/reportProductsCount"
             ]
           },
           {
@@ -66,7 +67,8 @@
               "api-reference/endpoint/employees/get",
               "api-reference/endpoint/employees/getById",
               "api-reference/endpoint/employees/updatePartial",
-              "api-reference/endpoint/employees/delete"
+              "api-reference/endpoint/employees/delete",
+              "api-reference/endpoint/employees/reportInboundOrders"
             ]
           },
           {
@@ -76,7 +78,40 @@
               "api-reference/endpoint/buyers/get",
               "api-reference/endpoint/buyers/getById",
               "api-reference/endpoint/buyers/updatePartial",
-              "api-reference/endpoint/buyers/delete"
+              "api-reference/endpoint/buyers/delete",
+              "api-reference/endpoint/buyers/reportPurchaseOrders"
+            ]
+          },
+          {
+            "group": "Localities",
+            "pages": [
+              "api-reference/endpoint/localities/create",
+              "api-reference/endpoint/localities/reportSellersCount",
+              "api-reference/endpoint/localities/reportCarriersCount"
+            ]
+          },
+          {
+            "group": "Carriers",
+            "pages": [
+              "api-reference/endpoint/carriers/create"
+            ]
+          },
+          {
+            "group": "Product Batches",
+            "pages": [
+              "api-reference/endpoint/product_batches/create"
+            ]
+          },
+          {
+            "group": "Inbound Orders",
+            "pages": [
+              "api-reference/endpoint/inbound_orders/create"
+            ]
+          },
+          {
+            "group": "Purchase Orders",
+            "pages": [
+              "api-reference/endpoint/purchase_orders/create"
             ]
           }
         ]

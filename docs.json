@@ -57,7 +57,8 @@
               "api-reference/endpoint/products/get",
               "api-reference/endpoint/products/getById",
               "api-reference/endpoint/products/updatePartial",
-              "api-reference/endpoint/products/delete"
+              "api-reference/endpoint/products/delete",
+              "api-reference/endpoint/products/reportRecords"
             ]
           },
           {
@@ -94,6 +95,12 @@
             "group": "Carriers",
             "pages": [
               "api-reference/endpoint/carriers/create"
+            ]
+          },
+          {
+            "group": "Product Records",
+            "pages": [
+              "api-reference/endpoint/product_records/create"
             ]
           },
           {

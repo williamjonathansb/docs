@@ -1369,6 +1369,128 @@
         }
       }
     },
+    "/products/reportRecords": {
+      "get": {
+        "summary": "Get product records report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The ID's of the product to generate the report for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product records report for the specified product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "product_id": {
+                            "type": "integer"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "records_count": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "product_id",
+                          "description",
+                          "records_count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productRecords": {
+      "post": {
+        "summary": "Create a new product record",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "last_update_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "purchase_price": {
+                    "type": "number"
+                  },
+                  "sale_price": {
+                    "type": "number"
+                  },
+                  "product_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "last_update_date",
+                  "purchase_price",
+                  "sale_price",
+                  "product_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product record created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseData"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/employees": {
       "get": {
         "summary": "Get all employees",
